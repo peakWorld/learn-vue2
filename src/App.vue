@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view class="app-router-view" />
+    
+    <component
+      v-for="(item, index) in list"
+      :key="index"
+      :is="dialogName"
+      :configs="item"
+      :index="index"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapState } from 'vuex'
+import Dialog from '@/components/Dialog.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Dialog
+  },
+  computed: {
+    ...mapState('dialog', ['list']),
+    dialogName() {
+      return Dialog
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
