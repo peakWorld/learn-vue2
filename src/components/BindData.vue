@@ -40,7 +40,8 @@
 
     <div style="margin-top: 20px">
       <span>{{ autoprops.name }}</span>
-      <button @click="addProp">修改非初始化属性</button>
+      <span>{{ testA }}</span>
+      <button @click="editAutoProp">修改非初始化属性</button>
       <button @click="addAutoProp">新增响应式属性</button>
       <button @click="handleWObj">修改watch监听属性</button>
     </div>
@@ -113,14 +114,16 @@ export default {
   },
   mounted () {
     // 真实DOM挂载发生在beforeMount之后、mounted之前。
-    // 在mounted之前的生命周期中更改data中msg的值，都是有效的
     this.msg = "mounted..."
   },
   methods: {
     addAutoProp() {
+      console.log(this.$data)
       this.$set(this.autoprops, 'name', 'autojack')
+      // 不能给根数据$data添加响应式属性
+      // this.$set(this.$data, 'testA', 1)
     },
-    addProp() {
+    editAutoProp() {
       // 必须先执行addAutoProp, 使name成为响应式属性, addProp更新操作才起效果。
       // 如果先执行addProp, 再执行addAutoProp无效。
       this.autoprops.name = 'jack'

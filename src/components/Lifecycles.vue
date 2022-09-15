@@ -27,6 +27,7 @@
     },
     mounted () {
       // 数据绑定完成，真实 DOM 已挂载到页面，vm.$el可获取真实 DOM
+      // 在mounted之前的生命周期中更改data中的值，都是有效的
       console.log('mounted...', this.$el)
 
       // mounted 不会承诺所有的子组件也都一起被挂载
