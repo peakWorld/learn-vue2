@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>{{ count }}</div>
+    <div :id="localCount > -1 ? 'a' : 'b'"></div>
     <button @click="doStoreFuncs">doStoreFuncs</button>
     <button @click="doGetterFunc">doGetterFunc</button>
     <button @click="doMapAction">doMapAction</button>
